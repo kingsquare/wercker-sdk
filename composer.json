@@ -1,0 +1,33 @@
+{
+  "name": "kingsquare/wercker-sdk",
+  "type": "sdk",
+  "description": "Kingsquare PHP client for interacting with Wercker API",
+  "keywords": [
+    "Wercker",
+    "sdk"
+  ],
+  "homepage": "http://www.kingsquare.nl/",
+  "license": "MIT",
+  "authors": [{
+    "name": "Robin Speekenbrink",
+    "email": "robin@kingsquare.nl"
+  }],
+  "require": {
+    "php": "^5.5 || ^7.0",
+    "ext-curl": "*",
+    "guzzlehttp/guzzle": "^6.0"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kingsquare\\Wercker\\": "src/"
+    }
+  },
+  "version": "0.0.1",
+  "config": {
+    "preferred-install": "dist",
+    "optimize-autoloader": true
+  }
+}
