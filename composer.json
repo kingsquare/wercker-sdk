@@ -27,7 +27,7 @@
       "Kingsquare\\Wercker\\": "src/"
     }
   },
-  "version": "0.1.0",
+  "version": "1.0.0",
   "config": {
     "preferred-install": "dist",
     "optimize-autoloader": true
