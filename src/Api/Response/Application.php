@@ -19,6 +19,11 @@ class Application
     private $builds;
     private $ignoredBranches;
 
+    /**
+     * @param array $data
+     * @return \Kingsquare\Wercker\Api\Response\Application
+     * @throws \Exception
+     */
     public static function fromResponse(array $data)
     {
         $instance = new self();

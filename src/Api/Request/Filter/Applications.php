@@ -24,7 +24,7 @@ class Applications extends Filter
     private $skip;
 
     /**
-     * @param $stack
+     * @param int $stack
      * @return $this
      */
     public function byStack($stack)

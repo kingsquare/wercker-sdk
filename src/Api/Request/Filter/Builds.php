@@ -86,7 +86,7 @@ class Builds extends Filter
     }
 
     /**
-     * @param $skip
+     * @param int $skip
      * @return $this
      */
     public function skipBy($skip)
@@ -96,7 +96,7 @@ class Builds extends Filter
     }
 
     /**
-     * @param $sort
+     * @param string $sort
      * @return $this
      */
     public function sortBy($sort)

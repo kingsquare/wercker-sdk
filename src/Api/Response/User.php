@@ -10,6 +10,10 @@ class User
     private $id;
     private $meta;
 
+    /**
+     * @param array $data
+     * @return \Kingsquare\Wercker\Api\Response\User
+     */
     public static function fromResponse(array $data)
     {
         $instance = new self();

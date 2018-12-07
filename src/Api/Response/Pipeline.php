@@ -13,6 +13,11 @@ class Pipeline
     private $url;
     private $id;
 
+    /**
+     * @param array $data
+     * @return \Kingsquare\Wercker\Api\Response\Pipeline
+     * @throws \Exception
+     */
     public static function fromResponse(array $data)
     {
         $instance = new self();

@@ -10,11 +10,13 @@ class Workflows extends \Kingsquare\Wercker\Api\Resource
      * GET /api/v3/runs
      *
      * @param string $applicationId
-     * @param \Kingsquare\Wercker\Api\Request\Filter\Workflows $filter
-     * @return \Kingsquare\Wercker\Api\Response\Run[]
+     * @param \Kingsquare\Wercker\Api\Request\Filter\Workflows|null $filter
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function find($applicationId, \Kingsquare\Wercker\Api\Request\Filter\Workflows $filter = null)
     {
+        $applicationId = (string) $applicationId;
         if ($filter === null) {
             $filter = new \Kingsquare\Wercker\Api\Request\Filter\Workflows();
         }
@@ -23,7 +25,8 @@ class Workflows extends \Kingsquare\Wercker\Api\Resource
             ->get()
             ->addPath('workflows')
             ->withFilter($filter->byApplicationId($applicationId))
-            ->call());
+            ->call()
+        );
     }
 
     /**
@@ -31,13 +34,19 @@ class Workflows extends \Kingsquare\Wercker\Api\Resource
      *
      * @param string $workflowId
      * @return \Kingsquare\Wercker\Api\Response\Workflow
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function get($workflowId)
     {
+        $workflowId = (string) $workflowId;
+
+        $this->guardAgainstMalformedId($workflowId, 'workflowId');
+
         return Workflow::fromResponse($this->client
             ->get()
             ->addPath('workflows')
             ->addPath($workflowId)
-            ->call());
+            ->call()
+        );
     }
 }

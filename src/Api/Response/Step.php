@@ -16,6 +16,11 @@ class Step
     private $status;
     private $step;
 
+    /**
+     * @param array $data
+     * @return \Kingsquare\Wercker\Api\Response\Step
+     * @throws \Exception
+     */
     public static function fromResponse(array $data)
     {
         $instance = new self();

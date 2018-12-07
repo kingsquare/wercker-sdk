@@ -15,6 +15,11 @@ class Build
     private $startedAt;
     private $status;
 
+    /**
+     * @param array $data
+     * @return \Kingsquare\Wercker\Api\Response\Build
+     * @throws \Exception
+     */
     public static function fromResponse(array $data)
     {
         $instance = new self();

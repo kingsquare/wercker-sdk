@@ -31,7 +31,7 @@ class Deploys extends Filter
     private $skip;
 
     /**
-     * @param $build
+     * @param string $build
      * @return $this
      */
     public function byBuild($build)
@@ -41,7 +41,7 @@ class Deploys extends Filter
     }
 
     /**
-     * @param $result
+     * @param string $result
      * @return $this
      */
     public function byResult($result)
@@ -51,7 +51,7 @@ class Deploys extends Filter
     }
 
     /**
-     * @param $stack
+     * @param int $stack
      * @return $this
      */
     public function byStack($stack)
@@ -61,7 +61,7 @@ class Deploys extends Filter
     }
 
     /**
-     * @param $status
+     * @param string $status
      * @return $this
      */
     public function byStatus($status)
@@ -71,7 +71,7 @@ class Deploys extends Filter
     }
 
     /**
-     * @param $limit
+     * @param int $limit
      * @return $this
      */
     public function limitBy($limit)
@@ -81,7 +81,7 @@ class Deploys extends Filter
     }
 
     /**
-     * @param $skip
+     * @param int $skip
      * @return $this
      */
     public function skipBy($skip)
@@ -91,7 +91,7 @@ class Deploys extends Filter
     }
 
     /**
-     * @param $sort
+     * @param string $sort
      * @return $this
      */
     public function sortBy($sort)

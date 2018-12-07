@@ -18,6 +18,11 @@ class Run
     private $url;
     private $id;
 
+    /**
+     * @param array $data
+     * @return \Kingsquare\Wercker\Api\Response\Run
+     * @throws \Exception
+     */
     public static function fromResponse(array $data)
     {
         $instance = new self();

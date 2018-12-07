@@ -168,7 +168,7 @@ class RequestBuilder
     }
 
     /**
-     * @return mixed|string
+     * @return array|mixed|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function call()
@@ -199,10 +199,10 @@ class RequestBuilder
     }
 
     /**
-     * @param $headers
+     * @param array $headers
      * @return $this
      */
-    public function withHeaders($headers)
+    public function withHeaders(array $headers)
     {
         foreach ($headers as $header) {
             $this->withHeader($header);

@@ -27,4 +27,17 @@ abstract class Resource
     {
         return $this->client;
     }
+
+    /**
+     * @param string $id
+     * @param string $field
+     */
+    protected function guardAgainstMalformedId($id, $field = 'applicationId')
+    {
+        static $pattern = '/^[0-9a-fA-F]{24}$/';
+        $id = (string)$id;
+        if ($id !== '' && !preg_match($pattern, $id)) {
+            throw new \InvalidArgumentException('Malformed ' . $field . ' given (' . $id . '), must match ' . $pattern);
+        }
+    }
 }

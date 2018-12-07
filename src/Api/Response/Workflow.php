@@ -2,6 +2,10 @@
 
 namespace Kingsquare\Wercker\Api\Response;
 
+/**
+ * Class Workflow
+ * @package Kingsquare\Wercker\Api\Response
+ */
 class Workflow
 {
     private $user;
@@ -14,6 +18,11 @@ class Workflow
     private $createdAt;
     private $url;
 
+    /**
+     * @param array $data
+     * @return \Kingsquare\Wercker\Api\Response\Workflow
+     * @throws \Exception
+     */
     public static function fromResponse(array $data)
     {
         $instance = new self();

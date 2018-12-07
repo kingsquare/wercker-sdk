@@ -34,7 +34,7 @@ class Trigger implements \JsonSerializable
     }
 
     /**
-     * @param $run
+     * @param string $run
      * @return $this
      */
     public function setSourceRun($run)
@@ -44,7 +44,7 @@ class Trigger implements \JsonSerializable
     }
 
     /**
-     * @param $branch
+     * @param string $branch
      * @return $this
      */
     public function setBranch($branch)
@@ -54,7 +54,7 @@ class Trigger implements \JsonSerializable
     }
 
     /**
-     * @param $commitHash
+     * @param string $commitHash
      * @return $this
      */
     public function setCommitHash($commitHash)
@@ -65,7 +65,7 @@ class Trigger implements \JsonSerializable
 
 
     /**
-     * @param $message
+     * @param string $message
      * @return $this
      */
     public function setMessage($message)

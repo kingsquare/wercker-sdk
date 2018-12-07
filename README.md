@@ -53,3 +53,15 @@ $steps = $wercker->runs->getSteps($runs[0]->getId());
 $workflows = $wercker->workflows->find($applications[0]->getId());
 // $workflow = $wercker->workflows->get($workflowId);
 ```
+
+## Quick testing
+
+Create a .env file with the WERCKER_API_TOKEN value:
+```
+WERCKER_API_TOKEN=123
+WERCKER_USER=myUser
+```
+copy the php script above into a `test.php` and run it with the `.env` variables loaded
+```bash
+eval $(egrep -v '^#' .env | xargs) php test.php
+```

@@ -10,6 +10,11 @@ class Deploy
     private $createdAt;
     private $progress;
 
+    /**
+     * @param array $data
+     * @return \Kingsquare\Wercker\Api\Response\Deploy
+     * @throws \Exception
+     */
     public static function fromResponse(array $data)
     {
         $instance = new self();

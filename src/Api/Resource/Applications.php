@@ -23,17 +23,21 @@ class Applications extends \Kingsquare\Wercker\Api\Resource
      * @param string $username
      * @param \Kingsquare\Wercker\Api\Request\Filter\Applications|null $filter
      * @return \Kingsquare\Wercker\Api\Response\Application[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function find($username, Filter $filter = null)
     {
         $username = (string)$username;
+
         $this->guardAgainstInvalidUsername($username);
+
         return array_map([Application::class, 'fromResponse'], $this->getClient()
             ->get()
             ->addPath('applications')
             ->addPath($username)
             ->withFilter($filter)
-            ->call());
+            ->call()
+        );
     }
 
     /**
@@ -42,31 +46,42 @@ class Applications extends \Kingsquare\Wercker\Api\Resource
      * @param string $username
      * @param string $application
      * @return \Kingsquare\Wercker\Api\Response\Application
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function get($username, $application)
     {
+        $username = (string)$username;
+        $application = (string)$application;
+
         $this->guardAgainstInvalidUsername($username);
         $this->guardAgainstInvalidApplicationName($application);
+
         return Application::fromResponse($this->client
             ->get()
             ->addPath('applications')
             ->addPath($username)
             ->addPath($application)
-            ->call());
+            ->call()
+        );
     }
 
     /**
      * PATCH /api/v3/applications/:username/:application
      *
-     * @param $username
-     * @param $application
+     * @param string $username
+     * @param string $application
      * @param array $ignoredBranches
      * @return \Kingsquare\Wercker\Api\Response\Application
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function update($username, $application, array $ignoredBranches = [])
     {
+        $username = (string)$username;
+        $application = (string)$application;
+
         $this->guardAgainstInvalidUsername($username);
         $this->guardAgainstInvalidApplicationName($application);
+
         return Application::fromResponse($this->client
             ->patch()
             ->addPath('applications')
@@ -74,7 +89,8 @@ class Applications extends \Kingsquare\Wercker\Api\Resource
             ->addPath($application)
             ->withHeader(new ContentType('application/json'))
             ->withBody(json_encode(['ignoredBranches' => array_slice($ignoredBranches, 0, 10)]))
-            ->call());
+            ->call()
+        );
     }
 
     /**
@@ -84,11 +100,16 @@ class Applications extends \Kingsquare\Wercker\Api\Resource
      * @param string $application
      * @param \Kingsquare\Wercker\Api\Request\Filter\Builds|null $filter
      * @return \Kingsquare\Wercker\Api\Response\Build[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getBuilds($username, $application, Builds $filter = null)
     {
+        $username = (string)$username;
+        $application = (string)$application;
+
         $this->guardAgainstInvalidUsername($username);
         $this->guardAgainstInvalidApplicationName($application);
+
         return array_map([Build::class, 'fromResponse'], $this->client
             ->get()
             ->addPath('applications')
@@ -96,7 +117,8 @@ class Applications extends \Kingsquare\Wercker\Api\Resource
             ->addPath($application)
             ->addPath('builds')
             ->withFilter($filter)
-            ->call());
+            ->call()
+        );
     }
 
     /**
@@ -104,9 +126,13 @@ class Applications extends \Kingsquare\Wercker\Api\Resource
      * @param string $application
      * @param \Kingsquare\Wercker\Api\Request\Filter\Deploys|null $filter
      * @return \Kingsquare\Wercker\Api\Response\Deploy[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getDeploys($username, $application, Deploys $filter = null)
     {
+        $username = (string)$username;
+        $application = (string)$application;
+
         $this->guardAgainstInvalidUsername($username);
         $this->guardAgainstInvalidApplicationName($application);
 
@@ -117,7 +143,8 @@ class Applications extends \Kingsquare\Wercker\Api\Resource
             ->addPath($application)
             ->addPath('deploys')
             ->withFilter($filter)
-            ->call());
+            ->call()
+        );
     }
 
     /**
