@@ -2,6 +2,8 @@
 
 This is an unofficial PHP SDK for the [Wercker service](https:www.wercker.com)
 
+Much of the underlying library code was derived from the [Auth0/Sdk](https://github.com/auth0/auth0-PHP)
+
 # Installation
 
 ``` composer require kingsquare/wercker-sdk ```
