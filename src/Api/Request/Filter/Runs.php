@@ -4,13 +4,58 @@ namespace Kingsquare\Wercker\Api\Request\Filter;
 
 use Kingsquare\Wercker\Api\Request\Filter;
 
+/**
+ * Class Runs
+ * @package Kingsquare\Wercker\Api\Request\Filter
+ */
 class Runs extends Filter
 {
+    /**
+     * @var string
+     */
+    private $author;
+
+    /**
+     * @var string
+     */
+    private $sourceRun;
+
+    /**
+     * @var string
+     */
+    private $pipelineId;
+
+    /**
+     * @var string
+     */
+    private $sort;
+
+    /**
+     * @var int
+     */
+    private $limit;
+
+    /**
+     * @var string
+     */
+    private $applicationId;
+
+    /**
+     * @var int
+     */
+    private $skip;
+
+    /**
+     * @return bool
+     */
     public function isValid()
     {
         return $this->getId() !== null;
     }
 
+    /**
+     * @return string|null
+     */
     public function getId()
     {
         if (!empty($this->applicationId)) {
@@ -22,74 +67,126 @@ class Runs extends Filter
         return null;
     }
 
-    // /^[0-9a-fA-F]{24}$/
+    /**
+     * @param string $applicationId
+     * @return $this
+     */
     public function byApplicationId($applicationId)
     {
-        $this->applicationId = (string) $applicationId;
+        $applicationId = (string) $applicationId;
+        $this->guardAgainstMalformedId($applicationId);
+        if ($applicationId === '') {
+            return $this;
+        }
+
+        $this->applicationId = $applicationId;
         return $this;
     }
 
+    /**
+     * @param int $limit
+     * @return $this
+     */
     public function limitBy($limit)
     {
-        $this->limit = $this->sanitizeLimit($limit, 20, 1, 20);
+        $this->limit = $this->sanitizeLimit((int) $limit, 20, 1, 20);
         return $this;
     }
 
     /**
      * NOTE the docs same something weird? Optional Skip the first X runs. Min: 1, default: 0 ?
+     * @param int $skip
+     * @return $this
      */
     public function skipBy($skip)
     {
-        $this->skip = $this->sanitizeLimit($skip, 0, 0, 100);
+        $this->skip = $this->sanitizeLimit((int) $skip, 0, 0, 100);
         return $this;
     }
 
-
+    /**
+     * @param string $sort
+     * @return $this
+     */
     public function sortBy($sort)
     {
-        $this->sort = $this->sanitizeEnum($sort, 'creationDateDesc', ['creationDateAsc', 'creationDateDesc']);
+        $this->sort = $this->sanitizeEnum((string) $sort, 'creationDateDesc', ['creationDateAsc', 'creationDateDesc']);
         return $this;
     }
 
+    /**
+     * @param string $status
+     * @return $this
+     */
     public function byStatus($status)
     {
         $this->status($status);
         return $this;
     }
 
+    /**
+     * @param string $result
+     * @return $this
+     */
     public function byResult($result)
     {
         $this->result($result);
         return $this;
     }
 
+    /**
+     * @param string $branch
+     * @return $this
+     */
     public function byBranch($branch)
     {
         $this->branch = (string)$branch;
         return $this;
     }
 
+    /**
+     * @param string $pipelineId
+     * @return $this
+     */
     public function byPipelineId($pipelineId)
     {
-        $this->pipelineId = (string)$pipelineId;
+        $pipelineId = (string) $pipelineId;
+        $this->guardAgainstMalformedId($pipelineId, 'pipelineId');
+        if ($pipelineId === '') {
+            return $this;
+        }
+
+        $this->pipelineId = $pipelineId;
         return $this;
     }
 
+    /**
+     * @param string $commit
+     * @return $this
+     */
     public function byCommit($commit)
     {
         $this->commit($commit);
         return $this;
     }
 
+    /**
+     * @param string $sourceRun
+     * @return $this
+     */
     public function bySourceRun($sourceRun)
     {
-        $this->sourceRun = (string) $sourceRun;
+        $this->sourceRun = (string)$sourceRun;
         return $this;
     }
 
+    /**
+     * @param string $author
+     * @return $this
+     */
     public function byWerckerUser($author)
     {
-        $this->author = (string) $author;
+        $this->author = (string)$author;
         return $this;
     }
 

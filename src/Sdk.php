@@ -4,7 +4,6 @@ namespace Kingsquare\Wercker;
 use Kingsquare\Wercker\Api\Resource\Applications;
 use Kingsquare\Wercker\Api\Resource\Runs;
 use Kingsquare\Wercker\Api\Resource\Workflows;
-
 use Kingsquare\Wercker\Api\Client;
 use Kingsquare\Wercker\Api\Header\AuthorizationBearer;
 
