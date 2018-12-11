@@ -1,4 +1,7 @@
 # Wercker PHP SDK
+[![Latest Stable Version](https://poser.pugx.org/kingsquare/wercker-sdk/v/stable?format=flat-square)](https://packagist.org/packages/kingsquare/wercker-sdk)
+[![License](https://poser.pugx.org/kingsquare/wercker-sdk/license)](https://packagist.org/packages/kingsquare/wercker-sdk)
+[![Total Downloads](https://poser.pugx.org/kingsquare/wercker-sdk/downloads)](https://packagist.org/packages/kingsquare/wercker-sdk)
 
 This is an unofficial PHP SDK for the [Wercker service](https:www.wercker.com)
 
