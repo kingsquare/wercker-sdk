@@ -25,4 +25,49 @@ class User
         $instance->id = $data['userId'];
         return $instance;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return array [?gravatar: string]
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return array [username:string, type:string, werckerEmployee: bool]
+     */
+    public function getMeta()
+    {
+        return $this->meta;
+    }
 }

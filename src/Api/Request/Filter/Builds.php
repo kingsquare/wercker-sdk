@@ -13,17 +13,17 @@ class Builds extends Filter
     /**
      * @var string
      */
-    private $sort;
+    protected $sort;
 
     /**
      * @var int
      */
-    private $limit;
+    protected $limit;
 
     /**
      * @var int
      */
-    private $skip;
+    protected $skip;
 
     /**
      * @param string $branch

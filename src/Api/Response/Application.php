@@ -42,8 +42,13 @@ class Application
         return $instance;
     }
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     /**
-     * @return mixed
+     * @return string
      */
     public function getId()
     {
@@ -51,7 +56,7 @@ class Application
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getUrl()
     {
@@ -59,7 +64,7 @@ class Application
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -67,7 +72,7 @@ class Application
     }
 
     /**
-     * @return mixed
+     * @return User
      */
     public function getOwner()
     {
@@ -75,7 +80,7 @@ class Application
     }
 
     /**
-     * @return mixed
+     * @return \DateTimeImmutable
      */
     public function getCreatedAt()
     {
@@ -83,7 +88,7 @@ class Application
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPrivacy()
     {
@@ -91,7 +96,7 @@ class Application
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getStack()
     {
@@ -99,7 +104,7 @@ class Application
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function getScm()
     {
@@ -123,7 +128,7 @@ class Application
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function getIgnoredBranches()
     {

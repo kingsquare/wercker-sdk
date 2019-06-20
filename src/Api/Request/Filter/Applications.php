@@ -11,17 +11,17 @@ class Applications extends Filter
     /**
      * @var string
      */
-    private $sort;
+    protected $sort;
 
     /**
      * @var int
      */
-    private $limit;
+    protected $limit;
 
     /**
      * @var int
      */
-    private $skip;
+    protected $skip;
 
     /**
      * @param int $stack
@@ -39,7 +39,7 @@ class Applications extends Filter
      */
     public function limitBy($limit)
     {
-        $this->limit = $this->sanitizeLimit((int) $limit, 20, 1, 100);
+        $this->limit = $this->sanitizeLimit((int) $limit, 20, 1, 300);
         return $this;
     }
 

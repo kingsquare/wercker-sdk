@@ -13,37 +13,37 @@ class Runs extends Filter
     /**
      * @var string
      */
-    private $author;
+    protected $author;
 
     /**
      * @var string
      */
-    private $sourceRun;
+    protected $sourceRun;
 
     /**
      * @var string
      */
-    private $pipelineId;
+    protected $pipelineId;
 
     /**
      * @var string
      */
-    private $sort;
+    protected $sort;
 
     /**
      * @var int
      */
-    private $limit;
+    protected $limit;
 
     /**
      * @var string
      */
-    private $applicationId;
+    protected $applicationId;
 
     /**
      * @var int
      */
-    private $skip;
+    protected $skip;
 
     /**
      * @return bool

@@ -45,6 +45,11 @@ class Sdk
     public $workflows;
 
     /**
+     * @var Client
+     */
+    public $v2;
+
+    /**
      * Constructor.
      *
      * @param string $token
@@ -53,25 +58,31 @@ class Sdk
     public function __construct($token, array $guzzleOptions = [])
     {
         $this->token = $token;
-        $this->guzzleOptions = $guzzleOptions;
+        $this->guzzleOptions = array_merge([
+            'headers' => [
+                'User-Agent' => $this->getPackageData('name',
+                        'kingsquare/wercker-sdk') . '-' . $this->getPackageData('version', 'n/a'),
+                'Authorization' => 'Bearer ' . $this->token,
+                'Accept' => 'application/json',
+            ]
+        ], $guzzleOptions);
 
         $this->setApiClient();
 
         $this->applications = new Applications($this->apiClient);
         $this->runs = new Runs($this->apiClient);
         $this->workflows = new Workflows($this->apiClient);
+        $this->v2 = new Client([
+            'basePath' => '/api/v2/',
+            'guzzleOptions' => $this->guzzleOptions
+        ]);
     }
 
     protected function setApiClient()
     {
         $this->apiClient = new Client([
             'basePath' => '/api/' . self::API_VERSION . '/',
-            'guzzleOptions' => $this->guzzleOptions,
-            'headers' => [
-                'User-Agent' => $this->getPackageData('name',
-                        'kingsquare/wercker-sdk') . '-' . $this->getPackageData('verson', 'n/a'),
-                'Authorization' => 'Bearer ' . $this->token,
-            ]
+            'guzzleOptions' => $this->guzzleOptions
         ]);
     }
 
@@ -86,7 +97,7 @@ class Sdk
         if ($data === null) {
             $data = [];
             $composerData = json_decode(file_get_contents(__DIR__ . '/../composer.json'), true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
+            if (json_last_error() === JSON_ERROR_NONE) {
                 $data = $composerData;
             }
             unset($composerData);

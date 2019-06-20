@@ -13,22 +13,22 @@ class Workflows extends Filter
     /**
      * @var string
      */
-    private $sort;
+    protected $sort;
 
     /**
      * @var int
      */
-    private $limit;
+    protected $limit;
 
     /**
      * @var string
      */
-    private $applicationId;
+    protected $applicationId;
 
     /**
      * @var int
      */
-    private $skip;
+    protected $skip;
 
     /**
      * @param string $applicationId

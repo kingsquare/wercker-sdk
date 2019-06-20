@@ -13,22 +13,22 @@ class Deploys extends Filter
     /**
      * @var string
      */
-    private $sort;
+    protected $sort;
 
     /**
      * @var int
      */
-    private $limit;
+    protected $limit;
 
     /**
      * @var string
      */
-    private $build;
+    protected $build;
 
     /**
      * @var int
      */
-    private $skip;
+    protected $skip;
 
     /**
      * @param string $build

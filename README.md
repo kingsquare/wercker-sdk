@@ -35,7 +35,7 @@ $filter = (new \Kingsquare\Wercker\Api\Request\Filter\Applications())
 $applications = $wercker->applications->find($username, $filter);
 
 // DEPLOYS
-$deploys = $wercker->applications->getDeploys($username, $applications[0]->getId());
+$deploys = $wercker->applications->getDeploys($username, $applications[0]);
 
 // RUNS
 $filter = (new \Kingsquare\Wercker\Api\Request\Filter\Runs)

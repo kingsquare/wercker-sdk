@@ -25,19 +25,20 @@ class Applications extends \Kingsquare\Wercker\Api\Resource
      * @return \Kingsquare\Wercker\Api\Response\Application[]
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function find($username, Filter $filter = null)
+    public function find($username = '', Filter $filter = null)
     {
         $username = (string)$username;
-
-        $this->guardAgainstInvalidUsername($username);
-
-        return array_map([Application::class, 'fromResponse'], $this->getClient()
+        $client = $this->getClient()
             ->get()
             ->addPath('applications')
-            ->addPath($username)
-            ->withFilter($filter)
-            ->call()
-        );
+            ->withFilter($filter);
+
+        if ($username !== '') {
+            $this->guardAgainstInvalidUsername($username);
+            $client = $client->addPath($username);
+        }
+
+        return array_map([Application::class, 'fromResponse'], $client->call());
     }
 
     /**
